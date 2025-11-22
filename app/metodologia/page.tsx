@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Video, BookOpen, Users, Award, Code, FileText, MessageSquare, TrendingUp } from "lucide-react";
 
 const MetodologiaPage = () => {
@@ -293,12 +294,12 @@ const MetodologiaPage = () => {
             <p className="text-xl text-white/90 mb-8">
               Experimente nossa metodologia e veja os resultados
             </p>
-            <a
+            <Link
               href="/cursos"
               className="inline-block bg-white text-neonPurple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all"
             >
               Escolha Seu Curso
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

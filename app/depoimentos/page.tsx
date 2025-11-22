@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star, Quote } from "lucide-react";
 
@@ -178,7 +179,7 @@ const DepoimentosPage = () => {
               </div>
 
               <p className="text-gray-300 text-lg mb-6 leading-relaxed">
-                "{testimonials[activeIndex].text}"
+                &ldquo;{testimonials[activeIndex].text}&rdquo;
               </p>
 
               <div className="text-sm text-neonPurple">
@@ -261,7 +262,7 @@ const DepoimentosPage = () => {
                 </div>
 
                 <p className="text-gray-400 text-sm line-clamp-4 mb-3">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
 
                 <div className="text-xs text-neonPurple">
@@ -288,12 +289,12 @@ const DepoimentosPage = () => {
             <p className="text-xl text-white/90 mb-8">
               Comece sua jornada hoje e transforme sua carreira
             </p>
-            <a
+            <Link
               href="/cursos"
               className="inline-block bg-white text-neonPurple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all"
             >
               Ver Cursos Disponíveis
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

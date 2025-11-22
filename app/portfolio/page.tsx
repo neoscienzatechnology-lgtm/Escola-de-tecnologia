@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ExternalLink, Github } from "lucide-react";
 
 const PortfolioPage = () => {
@@ -252,12 +253,12 @@ const PortfolioPage = () => {
             <p className="text-xl text-white/90 mb-8">
               Junte-se aos nossos alunos e construa um portfólio de sucesso
             </p>
-            <a
+            <Link
               href="/cursos"
               className="inline-block bg-white text-neonPurple px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition-all"
             >
               Comece Agora
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

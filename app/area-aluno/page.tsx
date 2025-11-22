@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { BookOpen, Video, FileText, Award, TrendingUp, Clock, CheckCircle2, Lock } from "lucide-react";
 
 const AreaAlunoPage = () => {
@@ -242,12 +243,12 @@ const AreaAlunoPage = () => {
             <p className="text-gray-400 mb-6">
               Para acessar a área do aluno completa, faça sua matrícula em um de nossos cursos
             </p>
-            <a
+            <Link
               href="/cursos"
               className="inline-block bg-gradient-to-r from-neonPink to-neonPurple text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-opacity"
             >
               Ver Cursos Disponíveis
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
