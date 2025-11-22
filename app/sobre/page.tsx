@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Target, Users, Award, Rocket, Heart, Zap } from "lucide-react";
+import { Target, Users, Award, Rocket, Heart, Zap, Eye } from "lucide-react";
 
 const SobrePage = () => {
   const values = [
@@ -246,26 +246,5 @@ const SobrePage = () => {
     </div>
   );
 };
-
-// Eye icon component
-function Eye({ size = 24, className = "" }: { size?: number; className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  );
-}
 
 export default SobrePage;
