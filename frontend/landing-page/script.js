@@ -2,6 +2,15 @@
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
+// Constants
+const API_SIMULATION_DELAY = 1500; // ms
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
 if (mobileMenuToggle) {
     mobileMenuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
@@ -59,16 +68,13 @@ if (ctaButton && emailInput) {
         
         const email = emailInput.value.trim();
         
-        // Basic email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        
         if (!email) {
             showMessage('Por favor, insira seu e-mail', 'error');
             emailInput.focus();
             return;
         }
         
-        if (!emailRegex.test(email)) {
+        if (!isValidEmail(email)) {
             showMessage('Por favor, insira um e-mail válido', 'error');
             emailInput.focus();
             return;
@@ -92,7 +98,7 @@ if (ctaButton && emailInput) {
             
             // Show success message
             showMessage('Inscrição realizada com sucesso! Verifique seu e-mail.', 'success');
-        }, 1500);
+        }, API_SIMULATION_DELAY);
     });
     
     // Allow Enter key to submit
@@ -308,6 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.add('loaded');
     
     // Log page load time
-    const loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-    console.log(`⚡ Página carregada em ${loadTime}ms`);
+    const perfData = performance.getEntriesByType('navigation')[0];
+    if (perfData) {
+        const loadTime = perfData.domContentLoadedEventEnd - perfData.fetchStart;
+        console.log(`⚡ Página carregada em ${Math.round(loadTime)}ms`);
+    }
 });

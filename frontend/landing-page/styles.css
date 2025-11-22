@@ -91,6 +91,7 @@ body {
     font-family: var(--font-display);
     font-size: 1.25rem;
     font-weight: 700;
+    color: var(--primary-pink);
     background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -272,6 +273,7 @@ body {
 }
 
 .gradient-text {
+    color: var(--primary-pink);
     background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple), var(--primary-blue));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
