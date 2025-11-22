@@ -1,8 +1,9 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
@@ -10,6 +11,8 @@ import {
   Calendar,
   Settings,
   TrendingUp,
+  Menu,
+  X,
 } from 'lucide-react';
 
 const menuItems = [
@@ -42,11 +45,12 @@ const menuItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
 
-  return (
-    <aside className="w-64 border-r border-border bg-card/50 backdrop-blur-sm h-screen sticky top-0 flex flex-col">
+  const SidebarContent = () => (
+    <>
       <div className="p-6 border-b border-border">
-        <Link href="/aluno/dashboard" className="flex items-center gap-2">
+        <Link href="/aluno/dashboard" className="flex items-center gap-2" onClick={() => setIsOpen(false)}>
           <span className="text-3xl">🎓</span>
           <div>
             <h1 className="text-lg font-bold neon-text">Escola Tech</h1>
@@ -69,6 +73,7 @@ export function Sidebar() {
               >
                 <Link
                   href={item.href}
+                  onClick={() => setIsOpen(false)}
                   className={cn(
                     'flex items-center gap-3 px-4 py-3 rounded-lg transition-all',
                     'hover:bg-accent hover:text-accent-foreground',
@@ -83,6 +88,50 @@ export function Sidebar() {
           })}
         </ul>
       </nav>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-lg bg-card border border-border hover:bg-accent"
+      >
+        {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+      </button>
+
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex w-64 border-r border-border bg-card/50 backdrop-blur-sm h-screen sticky top-0 flex-col">
+        <SidebarContent />
+      </aside>
+
+      {/* Mobile Sidebar */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="lg:hidden fixed inset-0 bg-black/50 z-40"
+            />
+            
+            {/* Sidebar */}
+            <motion.aside
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="lg:hidden fixed left-0 top-0 bottom-0 w-64 border-r border-border bg-card backdrop-blur-sm z-40 flex flex-col"
+            >
+              <SidebarContent />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
