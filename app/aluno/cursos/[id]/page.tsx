@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -26,8 +27,10 @@ import {
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  const course = mockCourses.find((c) => c.id === params.id);
+export default function CoursePage() {
+  const params = useParams();
+  const id = params.id as string;
+  const course = mockCourses.find((c) => c.id === id);
   const [selectedLesson, setSelectedLesson] = useState(
     course?.modules[0]?.lessons[0]
   );
