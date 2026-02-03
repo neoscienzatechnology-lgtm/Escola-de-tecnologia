@@ -1,1 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola de Tecnologia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-2xl text-blue-600 mr-2"></i>
+                    <span class="text-xl font-bold text-gray-900">Escola de Tecnologia</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="loginBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                        Entrar
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Aprenda Tecnologia do Zero
+            </h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Cursos práticos de programação, desenvolvimento web e ciência de dados
+            </p>
+            <button class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100">
+                Começar Agora
+            </button>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Nossos Cursos</h2>
+            <div id="coursesGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Courses will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Por que escolher nossa escola?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <i class="fas fa-video text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Aulas em Vídeo</h3>
+                    <p class="text-gray-600">Conteúdo prático e didático em alta qualidade</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-certificate text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Certificados</h3>
+                    <p class="text-gray-600">Certificado de conclusão reconhecido</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-users text-4xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2">Comunidade</h3>
+                    <p class="text-gray-600">Suporte da comunidade e professores</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>&copy; 2024 Escola de Tecnologia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Entrar</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm">
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                    <input type="email" id="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">Senha</label>
+                    <input type="password" id="password" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500" required>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                    Entrar
+                </button>
+            </form>
+            <p class="text-center mt-4 text-sm text-gray-600">
+                Não tem conta? <a href="#" class="text-blue-600 hover:underline">Cadastre-se</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

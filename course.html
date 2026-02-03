@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso - Escola de Tecnologia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <i class="fas fa-graduation-cap text-2xl text-blue-600 mr-2"></i>
+                        <span class="text-xl font-bold text-gray-900">Escola de Tecnologia</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-gray-600 hover:text-gray-900">Voltar</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Course Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Main Content -->
+            <div class="lg:col-span-2">
+                <!-- Video Player -->
+                <div class="bg-black rounded-lg mb-6 aspect-video flex items-center justify-center">
+                    <div class="text-white text-center">
+                        <i class="fas fa-play-circle text-6xl mb-4"></i>
+                        <p>Vídeo da Aula</p>
+                        <p class="text-sm text-gray-300">Clique para reproduzir</p>
+                    </div>
+                </div>
+
+                <!-- Course Info -->
+                <div class="bg-white rounded-lg p-6 mb-6">
+                    <h1 id="courseTitle" class="text-3xl font-bold mb-4">Desenvolvimento Web Fullstack</h1>
+                    <p id="courseDescription" class="text-gray-600 mb-4">
+                        Aprenda a desenvolver aplicações web completas do zero. 
+                        Este curso abrange HTML, CSS, JavaScript, React e Node.js.
+                    </p>
+                    <div class="flex items-center space-x-6 text-sm text-gray-500">
+                        <span><i class="fas fa-clock mr-1"></i>40 horas</span>
+                        <span><i class="fas fa-signal mr-1"></i>Iniciante</span>
+                        <span><i class="fas fa-users mr-1"></i>1,234 alunos</span>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Seu Progresso</h3>
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm mb-2">
+                            <span>Progresso do Curso</span>
+                            <span id="progressPercent">25%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div id="progressBar" class="bg-blue-600 h-2 rounded-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600">3 de 12 aulas concluídas</p>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="lg:col-span-1">
+                <!-- Course Modules -->
+                <div class="bg-white rounded-lg p-6">
+                    <h3 class="text-xl font-semibold mb-4">Conteúdo do Curso</h3>
+                    <div id="modulesList" class="space-y-4">
+                        <!-- Modules will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock course data
+        const courseModules = [
+            {
+                id: 1,
+                title: "Introdução ao Desenvolvimento Web",
+                lessons: [
+                    { id: 1, title: "O que é desenvolvimento web?", duration: "10:30", completed: true },
+                    { id: 2, title: "Configurando o ambiente", duration: "15:45", completed: true },
+                    { id: 3, title: "Primeiro projeto", duration: "20:15", completed: true }
+                ]
+            },
+            {
+                id: 2,
+                title: "HTML e CSS Fundamentals",
+                lessons: [
+                    { id: 4, title: "Estrutura HTML", duration: "18:20", completed: false },
+                    { id: 5, title: "Estilização com CSS", duration: "25:10", completed: false },
+                    { id: 6, title: "Layout responsivo", duration: "22:35", completed: false }
+                ]
+            },
+            {
+                id: 3,
+                title: "JavaScript Essencial",
+                lessons: [
+                    { id: 7, title: "Variáveis e tipos", duration: "16:45", completed: false },
+                    { id: 8, title: "Funções e eventos", duration: "19:30", completed: false },
+                    { id: 9, title: "DOM Manipulation", duration: "24:15", completed: false }
+                ]
+            },
+            {
+                id: 4,
+                title: "React Framework",
+                lessons: [
+                    { id: 10, title: "Introdução ao React", duration: "21:00", completed: false },
+                    { id: 11, title: "Componentes e Props", duration: "28:45", completed: false },
+                    { id: 12, title: "Estado e Hooks", duration: "32:20", completed: false }
+                ]
+            }
+        ];
+
+        // Load modules
+        function loadModules() {
+            const modulesList = document.getElementById('modulesList');
+            
+            courseModules.forEach(module => {
+                const moduleDiv = document.createElement('div');
+                moduleDiv.className = 'border rounded-lg p-4';
+                
+                const completedLessons = module.lessons.filter(l => l.completed).length;
+                const totalLessons = module.lessons.length;
+                
+                moduleDiv.innerHTML = `
+                    <div class="flex justify-between items-center mb-3">
+                        <h4 class="font-semibold">${module.title}</h4>
+                        <span class="text-sm text-gray-500">${completedLessons}/${totalLessons}</span>
+                    </div>
+                    <div class="space-y-2">
+                        ${module.lessons.map(lesson => `
+                            <div class="flex items-center justify-between p-2 hover:bg-gray-50 rounded cursor-pointer" onclick="playLesson(${lesson.id})">
+                                <div class="flex items-center">
+                                    <i class="fas fa-${lesson.completed ? 'check-circle text-green-500' : 'play-circle text-gray-400'} mr-2"></i>
+                                    <span class="text-sm ${lesson.completed ? 'text-gray-900' : 'text-gray-600'}">${lesson.title}</span>
+                                </div>
+                                <span class="text-xs text-gray-500">${lesson.duration}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                
+                modulesList.appendChild(moduleDiv);
+            });
+        }
+
+        // Play lesson
+        function playLesson(lessonId) {
+            console.log('Playing lesson:', lessonId);
+            // Here you would load the actual video/content
+            
+            // Mock: mark as completed after "watching"
+            setTimeout(() => {
+                markLessonCompleted(lessonId);
+            }, 2000);
+        }
+
+        // Mark lesson as completed
+        function markLessonCompleted(lessonId) {
+            courseModules.forEach(module => {
+                const lesson = module.lessons.find(l => l.id === lessonId);
+                if (lesson) {
+                    lesson.completed = true;
+                }
+            });
+            
+            updateProgress();
+            loadModules(); // Reload to show updated status
+        }
+
+        // Update progress
+        function updateProgress() {
+            const totalLessons = courseModules.reduce((total, module) => total + module.lessons.length, 0);
+            const completedLessons = courseModules.reduce((total, module) => 
+                total + module.lessons.filter(l => l.completed).length, 0);
+            
+            const percentage = Math.round((completedLessons / totalLessons) * 100);
+            
+            document.getElementById('progressPercent').textContent = `${percentage}%`;
+            document.getElementById('progressBar').style.width = `${percentage}%`;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadModules();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
